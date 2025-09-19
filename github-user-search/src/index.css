@@ -1,9 +1,20 @@
+/* src/index.css */
+/* --- Tailwind base/components/utilities --- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* --- Custom app styles (kept from your original file) --- */
+
+/* Root-level system font + color scheme defaults */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
+  /* Use a dark content color by default (you originally had white text on dark bg) */
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -13,6 +24,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Links */
 a {
   font-weight: 500;
   color: #646cff;
@@ -22,19 +34,26 @@ a:hover {
   color: #535bf2;
 }
 
+/* Page layout */
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  /* Keep background from :root so pages with Tailwind wrappers still look correct */
+  background-color: var(--bg, #242424);
+  color: var(--fg, rgba(255,255,255,0.87));
 }
 
+/* Headline */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
+/* Buttons — keep your appearance but allow Tailwind overrides */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -44,7 +63,7 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.15s, color 0.15s;
 }
 button:hover {
   border-color: #646cff;
@@ -54,8 +73,10 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Light-mode overrides */
 @media (prefers-color-scheme: light) {
   :root {
+    /* light mode foreground/background */
     color: #213547;
     background-color: #ffffff;
   }
@@ -65,4 +86,5 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+
 }

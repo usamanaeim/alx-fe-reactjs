@@ -1,13 +1,14 @@
-import './App.css';
+// src/App.jsx
+import './index.css'; // tailwind styles
 import Search from './components/Search';
 
-function App() {
+export default function App(){
   return (
-    <div style={{ maxWidth: 900, margin: '24px auto', padding: 16 }}>
-      <h1>GitHub User Search</h1>
-      <Search />
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-5xl mx-auto py-10">
+        <h1 className="text-3xl font-bold text-center mb-6">GitHub User Search — Advanced</h1>
+        <Search />
+      </div>
     </div>
   );
 }
-
-export default App;
