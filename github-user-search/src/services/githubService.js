@@ -1,26 +1,13 @@
 import axios from 'axios';
 
-const API = axios.create({
-  baseURL: 'https://api.github.com'
-});
+export async function fetchUserData(username) {
+  if (!username) return null;
 
-// optional: include token if VITE_APP_GITHUB_API_KEY is set
-API.interceptors.request.use(config => {
-  const token = import.meta.env.VITE_APP_GITHUB_API_KEY;
-  if (token) {
-    // You can use `Bearer` or `token` depending on your token type — GitHub accepts "token <PAT>"
-    config.headers.Authorization = `token ${token}`;
+  try {
+    const res = await axios.get(`https://api.github.com/users/${encodeURIComponent(username)}`);
+    return res.data; // contains avatar_url, name, html_url, login, etc.
+  } catch (err) {
+    // forward the error so caller can show "Looks like we cant find the user"
+    throw err;
   }
-  return config;
-});
-
-export async function searchUsers(query) {
-  if (!query) return { items: [] };
-  const res = await API.get('/search/users', { params: { q: query } });
-  return res.data; // contains .items array of users
-}
-
-export async function getUser(username) {
-  const res = await API.get(`/users/${username}`);
-  return res.data;
 }
