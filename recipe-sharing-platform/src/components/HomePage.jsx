@@ -24,7 +24,12 @@ export default function HomePage() {
       <section>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {recipes.map((r) => (
-            <RecipeCard key={r.id} recipe={r} />
+            <div
+              key={r.id}
+              className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+            >
+              <RecipeCard recipe={r} />
+            </div>
           ))}
         </div>
       </section>
