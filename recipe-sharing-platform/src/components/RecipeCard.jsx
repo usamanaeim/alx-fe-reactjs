@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function RecipeCard({ recipe }) {
   return (
@@ -11,12 +12,14 @@ export default function RecipeCard({ recipe }) {
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-2">{recipe.title}</h3>
         <p className="text-gray-600 text-sm mb-4">{recipe.summary}</p>
-        <a
-          href={`/recipes/${recipe.id}`}
+
+        {/* Link to recipe detail using React Router Link */}
+        <Link
+          to={`/recipe/${recipe.id}`}
           className="text-blue-600 hover:underline text-sm"
         >
           View Recipe →
-        </a>
+        </Link>
       </div>
     </article>
   );

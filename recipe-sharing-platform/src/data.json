@@ -3,36 +3,63 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/600x400?text=Carbonara"
+    "image": "https://via.placeholder.com/900x600?text=Carbonara",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta or bacon",
+      "2 large eggs",
+      "50g grated Pecorino or Parmesan",
+      "Freshly ground black pepper",
+      "Salt"
+    ],
+    "steps": [
+      "Cook the spaghetti in salted boiling water until al dente.",
+      "Fry the pancetta until crisp.",
+      "Beat the eggs with most of the cheese and a pinch of pepper.",
+      "Drain pasta, reserve a little cooking water.",
+      "Quickly toss spaghetti with pancetta and egg-cheese mixture off the heat.",
+      "Add reserved water if needed to make a silky sauce. Serve with remaining cheese."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
-    "summary": "Chunks of grilled chicken cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/600x400?text=Chicken+Tikka"
+    "summary": "Chunks of grilled chicken cooked in a smooth buttery & creamy tomato-based gravy.",
+    "image": "https://via.placeholder.com/900x600?text=Chicken+Tikka+Masala",
+    "ingredients": [
+      "500g chicken breast, cubed",
+      "150g yogurt",
+      "2 tbsp tikka masala spice",
+      "1 onion, chopped",
+      "400g crushed tomatoes",
+      "100ml cream",
+      "2 tbsp vegetable oil",
+      "Salt"
+    ],
+    "steps": [
+      "Marinate chicken in yogurt and spice for at least 1 hour.",
+      "Grill or sear chicken pieces until cooked through.",
+      "Sauté onion until soft, add tomatoes and simmer.",
+      "Stir in cream and add the cooked chicken, warm through.",
+      "Serve with rice or naan."
+    ]
   },
   {
     "id": 3,
     "title": "Avocado Toast",
     "summary": "Simple and delicious—mashed avocado on toasted sourdough with a squeeze of lemon.",
-    "image": "https://via.placeholder.com/600x400?text=Avocado+Toast"
-  },
-  {
-    "id": 4,
-    "title": "Beef Stir Fry",
-    "summary": "Quick stir-fried beef with colorful vegetables and a savory sauce.",
-    "image": "https://via.placeholder.com/600x400?text=Beef+Stir+Fry"
-  },
-  {
-    "id": 5,
-    "title": "Greek Salad",
-    "summary": "Crisp salad with cucumbers, tomatoes, olives, feta, and a lemon-oregano dressing.",
-    "image": "https://via.placeholder.com/600x400?text=Greek+Salad"
-  },
-  {
-    "id": 6,
-    "title": "Pancakes",
-    "summary": "Fluffy pancakes served with maple syrup and fresh berries.",
-    "image": "https://via.placeholder.com/600x400?text=Pancakes"
+    "image": "https://via.placeholder.com/900x600?text=Avocado+Toast",
+    "ingredients": [
+      "2 slices sourdough bread",
+      "1 ripe avocado",
+      "1 tsp lemon juice",
+      "Salt & pepper",
+      "Chili flakes (optional)"
+    ],
+    "steps": [
+      "Toast the bread to your liking.",
+      "Mash the avocado with lemon juice, salt and pepper.",
+      "Spread the mash over toast and sprinkle chili flakes if desired."
+    ]
   }
 ]
