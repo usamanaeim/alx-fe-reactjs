@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // import Link
 import RecipeCard from "./RecipeCard";
 import recipesData from "../data.json"; // import mock data from src
 
@@ -6,7 +7,6 @@ export default function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    // With mock JSON in src, importing is simplest and fast
     setRecipes(recipesData);
   }, []);
 
@@ -24,12 +24,13 @@ export default function HomePage() {
       <section>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {recipes.map((r) => (
-            <div
+            <Link
               key={r.id}
-              className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+              to={`/recipe/${r.id}`} // navigate to RecipeDetail by ID
+              className="block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
             >
               <RecipeCard recipe={r} />
-            </div>
+            </Link>
           ))}
         </div>
       </section>
