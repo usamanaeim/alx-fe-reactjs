@@ -1,24 +1,44 @@
+// src/components/HomePage.jsx
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // import Link
+import { Link } from "react-router-dom";
 import RecipeCard from "./RecipeCard";
-import recipesData from "../data.json"; // import mock data from src
+import recipesData from "../data.json";
+
+const LOCAL_KEY = "recipes_custom";
 
 export default function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    setRecipes(recipesData);
+    // read custom recipes from localStorage and merge with static data
+    let custom = [];
+    try {
+      const raw = localStorage.getItem(LOCAL_KEY);
+      custom = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(custom)) custom = [];
+    } catch {
+      custom = [];
+    }
+    // show custom recipes first (most recent), then base data
+    setRecipes([...custom, ...recipesData]);
   }, []);
 
   return (
     <main className="container mx-auto px-4 py-8">
-      <header className="mb-8 text-center">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
-          Discover Recipes
-        </h1>
-        <p className="text-gray-600 mt-2">
-          Browse community recipes — click a recipe for details.
-        </p>
+      <header className="mb-8 flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+            Discover Recipes
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Browse community recipes — click a recipe for details.
+          </p>
+        </div>
+        <div>
+          <Link to="/add" className="inline-block bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-700">
+            + Add Recipe
+          </Link>
+        </div>
       </header>
 
       <section>
@@ -26,7 +46,7 @@ export default function HomePage() {
           {recipes.map((r) => (
             <Link
               key={r.id}
-              to={`/recipe/${r.id}`} // navigate to RecipeDetail by ID
+              to={`/recipe/${r.id}`}
               className="block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
             >
               <RecipeCard recipe={r} />
