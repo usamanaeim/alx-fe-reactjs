@@ -11,7 +11,7 @@ function useAuth() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   return { isAuthenticated };
 }
-
+    
 export default function ProtectedRoute({ children }) {
   const location = useLocation();
   const { isAuthenticated } = useAuth(); // <- useAuth used here
