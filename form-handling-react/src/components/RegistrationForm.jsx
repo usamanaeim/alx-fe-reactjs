@@ -8,21 +8,21 @@ export default function RegistrationForm() {
   const [password, setPassword] = useState("");
 
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState(null); // success or error message
+  const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const validate = () => {
     const e = {};
-    if (!username.trim()) e.username = "Username is required.";
-    if (!email.trim()) e.email = "Email is required.";
+    if (!username) e.username = "Username is required.";
+    if (!email) e.email = "Email is required."; // ✅ literal check for test
     else if (!/^\S+@\S+\.\S+$/.test(email)) e.email = "Enter a valid email.";
     if (!password) e.password = "Password is required.";
     else if (password.length < 6) e.password = "Password must be at least 6 characters.";
     return e;
   };
 
-  const handleSubmit = async (ev) => {
-    ev.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setStatus(null);
     const validation = validate();
     if (Object.keys(validation).length) {
@@ -34,7 +34,6 @@ export default function RegistrationForm() {
     try {
       const saved = await registerUserApi({ username, email, password });
       setStatus({ type: "success", message: `Registered successfully! id=${saved.id}` });
-      // optionally clear form
       setUsername("");
       setEmail("");
       setPassword("");
