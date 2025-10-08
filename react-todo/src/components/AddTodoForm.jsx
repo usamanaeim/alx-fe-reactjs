@@ -6,9 +6,9 @@ export default function AddTodoForm({ onAdd }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const trimmed = value.trim();
-    if (!trimmed) return;
-    onAdd(trimmed);
+    const text = value.trim();
+    if (!text) return;
+    onAdd(text);
     setValue('');
   };
 
@@ -16,13 +16,13 @@ export default function AddTodoForm({ onAdd }) {
     <form onSubmit={handleSubmit} aria-label="add-todo-form" className="mb-4">
       <input
         aria-label="todo-input"
+        placeholder="Add new todo"
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="Add a new todo"
         className="border p-2 rounded mr-2"
       />
-      <button type="submit" aria-label="add-button" className="px-3 py-2 bg-blue-600 text-white rounded">
+      <button aria-label="add-button" type="submit" className="px-3 py-2 bg-blue-600 text-white rounded">
         Add
       </button>
     </form>

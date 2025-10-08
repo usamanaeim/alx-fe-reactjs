@@ -1,34 +1,48 @@
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import TodoList from "../components/TodoList";
+// src/__tests__/TodoList.test.js
+import React from 'react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TodoList from '../components/TodoList';
 
-test("renders initial todos", () => {
-  render(<TodoList />);
-  expect(screen.getByText(/Learn React/i)).toBeInTheDocument();
-});
+describe('TodoList component', () => {
+  test('renders initial todos', () => {
+    render(<TodoList />);
+    expect(screen.getByText('Learn React')).toBeInTheDocument();
+    expect(screen.getByText('Write tests')).toBeInTheDocument();
+  });
 
-test("adds a new todo", () => {
-  render(<TodoList />);
-  const input = screen.getByPlaceholderText(/Add new todo/i);
-  const button = screen.getByText(/Add/i);
+  test('adds a new todo', () => {
+    render(<TodoList />);
+    const input = screen.getByLabelText('todo-input');
+    const addBtn = screen.getByLabelText('add-button');
 
-  fireEvent.change(input, { target: { value: "Test new todo" } });
-  fireEvent.click(button);
+    fireEvent.change(input, { target: { value: 'New task' } });
+    fireEvent.click(addBtn);
 
-  expect(screen.getByText(/Test new todo/i)).toBeInTheDocument();
-});
+    expect(screen.getByText('New task')).toBeInTheDocument();
+  });
 
-test("toggles todo completion", () => {
-  render(<TodoList />);
-  const todo = screen.getByText(/Learn React/i);
-  fireEvent.click(todo);
-  expect(todo).toHaveClass("line-through");
-});
+  test('toggles a todo when checkbox clicked', () => {
+    render(<TodoList />);
+    const todoItem = screen.getByText('Learn React').closest('li');
+    const checkbox = within(todoItem).getByRole('checkbox');
 
-test("deletes a todo", () => {
-  render(<TodoList />);
-  const deleteBtn = screen.getAllByText(/Delete/i)[0];
-  fireEvent.click(deleteBtn);
-  expect(screen.queryByText(/Learn React/i)).not.toBeInTheDocument();
+    // initially unchecked
+    expect(checkbox).not.toBeChecked();
+
+    fireEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
+    expect(todoItem).toHaveClass('line-through');
+  });
+
+  test('deletes a todo', () => {
+    render(<TodoList />);
+    const toDelete = screen.getByText('Learn React');
+    const todoItem = toDelete.closest('li');
+    const deleteButton = within(todoItem).getByLabelText(/^delete-/i);
+
+    fireEvent.click(deleteButton);
+
+    expect(screen.queryByText('Learn React')).not.toBeInTheDocument();
+  });
 });

@@ -4,21 +4,21 @@ import AddTodoForm from './AddTodoForm';
 
 export default function TodoList() {
   const [todos, setTodos] = useState([
-    { id: 1, text: 'Buy milk', completed: false },
-    { id: 2, text: 'Walk the dog', completed: false }
+    { id: 1, text: 'Learn React', completed: false },
+    { id: 2, text: 'Write tests', completed: false }
   ]);
 
   const addTodo = (text) => {
     const newTodo = { id: Date.now(), text, completed: false };
-    setTodos((s) => [newTodo, ...s]);
+    setTodos((prev) => [newTodo, ...prev]);
   };
 
   const toggleTodo = (id) => {
-    setTodos((s) => s.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
+    setTodos((prev) => prev.map(t => (t.id === id ? { ...t, completed: !t.completed } : t)));
   };
 
   const deleteTodo = (id) => {
-    setTodos((s) => s.filter(t => t.id !== id));
+    setTodos((prev) => prev.filter(t => t.id !== id));
   };
 
   return (
@@ -32,7 +32,7 @@ export default function TodoList() {
           <li
             key={todo.id}
             data-testid={`todo-${todo.id}`}
-            className={`flex items-center justify-between p-2 border rounded ${todo.completed ? 'opacity-60 line-through' : ''}`}
+            className={`flex items-center justify-between p-2 border rounded ${todo.completed ? 'line-through opacity-60' : ''}`}
           >
             <div className="flex items-center gap-3">
               <input
@@ -41,7 +41,7 @@ export default function TodoList() {
                 checked={todo.completed}
                 onChange={() => toggleTodo(todo.id)}
               />
-              <span>{todo.text}</span>
+              <span onClick={() => toggleTodo(todo.id)} style={{ cursor: 'pointer' }}>{todo.text}</span>
             </div>
 
             <div>
