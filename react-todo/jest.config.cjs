@@ -1,8 +1,12 @@
-export default {
-  testEnvironment: "jsdom",
+// jest.config.cjs
+module.exports = {
+  testEnvironment: 'jest-environment-jsdom',
   transform: {
-    "^.+\\.[tj]sx?$": "babel-jest",
+    '^.+\\.(js|jsx)$': 'babel-jest'
   },
-  moduleFileExtensions: ["js", "jsx"],
-  setupFilesAfterEnv: ["<rootDir>/src/setupTests.js"],
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
+  },
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
+  testPathIgnorePatterns: ['/node_modules/', '/dist/']
 };
